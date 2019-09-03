@@ -1,2 +1,4 @@
 datasource:
   url: localhost:3306/gaoyingfqd
+fql:
+  chileshi: sdfsdfe
