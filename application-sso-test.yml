@@ -7,6 +7,18 @@ datasource:
   url: 192.168.0.80:3306/ceshi
 
 spring:
+  redis:
+   database: 0
+   hostName: 192.168.0.80
+   port: 6379
+   timeout: 0
+   password:
+   pool:
+     maxTotal: 200
+     maxWaitMillis: 10000
+     maxIdle: 50
+     minIdle: 10
+     testOnBorrow: true
   application:
     name: microservice-order-sso # 对外暴露的服务名称
   cloud:
@@ -70,19 +82,6 @@ info:
   server.port: ${server.port}
   application.name: ${spring.application.name}
 
-#  spring:
-#    redis:
-#      database: 0
-#      hostName: 192.168.0.220
-#      port: 6379
-#      timeout: 0
-#      password:
-#      pool:
-#        maxTotal: 200
-#        maxWaitMillis: 10000
-#        maxIdle: 50
-#        minIdle: 10
-#        testOnBorrow: true
 # 配置hystrix dashboard的url访问
 # 开启指标流端点
 management:
