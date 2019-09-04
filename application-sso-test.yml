@@ -7,18 +7,18 @@ datasource:
   url: 192.168.0.80:3306/ceshi
 
 spring:
+  session:
+    store-type: none
   redis:
-   database: 0
-   hostName: 192.168.0.80
-   port: 6379
-   timeout: 0
-   password:
-   pool:
-     maxTotal: 200
-     maxWaitMillis: 10000
-     maxIdle: 50
-     minIdle: 10
-     testOnBorrow: true
+    database: 0
+    host: 192.168.0.220
+    port: 6379
+    timeout: 5000
+    pool:
+      max-active: -1
+      max-wait: -1
+      max-idle: 200
+      min-idle: 0
   application:
     name: microservice-order-sso # 对外暴露的服务名称
   cloud:
