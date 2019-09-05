@@ -39,7 +39,10 @@ spring:
     hikari:
       maximum-pool-size: 10 # 最大连接池数
       max-lifetime: 1770000
-
+    metadata-map:
+      cluster: HACLUSTER  #此服务属于HACLUSTER
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
 
 
 # feign和ribbon结合，指定策略。feign默认的是轮询的策略，这里的配置可以自定义
@@ -70,6 +73,9 @@ management:
     web:
       exposure:
         include: '*' #hystrix.stream    #如果写'*’，代表是暴露所有的端点我们可以看到更多的服务实例相关信息，开放监控内容
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
   endpoint:
     health:
       show-details: ALWAYS  #health endpoint是否必须显示全部细节
