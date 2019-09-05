@@ -1,4 +1,75 @@
+server:
+  port: 9010
+# 数据库地址
 datasource:
   url: localhost:3306/gaoying
-fql:
-  chileshi: sdfsdfe
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8762/eureka/  #,http://eureka02:7002/eureka/,http://eureka03:7003/eureka/
+
+  instance:
+#    health-check-url-path: /actuator/health   #应用实例的相对运行状况检查URL路径默认为 /info/health
+    instance-id: 消费方服务-9001  # 人性化显示出服务的信息
+    prefer-ip-address: true    # 访问路径可显示ip地址
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5
+
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  application:
+    name: microservice-order-feign-client
+#  boot:
+#    admin:
+#      client:
+#        url: "http://localhost:8788"   #指定SpringBootAdmin服务端地址
+#        password: password
+#        username: user
+#        instance:
+#          prefer-ip: true
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${datasource.url}?useSSL=false&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    username: root
+    password: root
+    hikari:
+      maximum-pool-size: 10 # 最大连接池数
+      max-lifetime: 1770000
+
+
+
+# feign和ribbon结合，指定策略。feign默认的是轮询的策略，这里的配置可以自定义
+MICROSERVICE-ORDER:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #com.netflix.loadbalancer.RandomRule  参考：http://ju.outofmemory.cn/entry/253843
+
+# 开启熔断
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 2000
+        readTimeout: 2000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+# 配置hystrix dashboard的url访问
+# 开启指标流端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #hystrix.stream    #如果写'*’，代表是暴露所有的端点我们可以看到更多的服务实例相关信息，开放监控内容
+  endpoint:
+    health:
+      show-details: ALWAYS  #health endpoint是否必须显示全部细节
