@@ -4,14 +4,14 @@ server:
 
 # 数据库地址
 datasource:
-  url: 192.168.0.80:3306/ceshi
+  url: 192.168.0.81:3306/ceshi
 
 spring:
   session:
     store-type: none
   redis:
     database: 0
-    host: 192.168.0.80
+    host: 192.168.0.81
     port: 6379
     timeout: 5000
     pool:
