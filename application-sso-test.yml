@@ -5,14 +5,14 @@ server:
 
 # 数据库地址
 datasource:
-  url: 192.168.0.81:3306/ceshi
+  url: 127.0.0.1:3306/ceshi
 
 spring:
   session:
     store-type: none
   redis:
     database: 0
-    host: 192.168.0.81
+    host: 127.0.0.1
     port: 6379
     timeout: 5000
     pool:
@@ -25,7 +25,7 @@ spring:
 
   datasource: # 数据库配置
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.0.81:3306/ceshi?useSSL=false&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    url: jdbc:mysql://127.0.0.1:3306/ceshi?useSSL=false&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
     username: root
     password: root
     hikari:
