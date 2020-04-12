@@ -8,8 +8,8 @@ datasource:
   url: 127.0.0.1:3306/ceshi
 
 spring:
-  session:
-    store-type: none
+  #session:
+    #store-type: none
   redis:
     database: 0
     host: 127.0.0.1
