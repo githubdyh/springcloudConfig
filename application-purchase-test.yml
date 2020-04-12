@@ -4,7 +4,7 @@ server:
   ceshi: aaa
 
 datasource:
-  url: localhost:3306/gaoying
+  url: 127.0.0.1:3306/ceshi
 
 spring:
   application:
