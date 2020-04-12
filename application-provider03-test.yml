@@ -1,7 +1,7 @@
 # 服务端口号
 server:
   port: 9053
-  ceshi: aaa
+  ceshi: fff
 
 # 数据库地址
 datasource:
